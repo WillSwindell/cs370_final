@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<style>
+  html * {
+    font-family: Nunito, sans-serif;
+  }
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>NBA Game Prediction Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input Values:</legend>
+        <table>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Home Team</legend>
+                        Team Name:
+                        <input name="Home Team Name" type="string" required>
+                        <br>
+                        <br> Win Percentage:
+                        <input name="Home Team Win Percentage" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Home Record (Pct):
+                        <input name="Home Team Home Record" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Away Record (Pct):
+                        <input name="Home Team Away Record" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Injured Players:
+                        <input name="Home Team Injuries" type="range"  min="0" max="15" step="1" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0</output>
+                        <br>
+                        <br> FG Percentage:
+                        <input name="Home Team FG Percentage" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Points Per Game:
+                        <input name="Home Team PPG" type="range"  min="70" max="130" step="0.5" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>100</output>
+                        <br>
+                        <br>
+                    </fieldset>
+                </td>
+                <td>
+                    <fieldset>
+                        <legend>Away Team</legend>
+                        Team Name:
+                        <input name="Away Team Name" type="string" required>
+                        <br>
+                        <br> Win Percentage:
+                        <input name="Away Team Win Percentage" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Home Record:
+                        <input name="Away Team Home Record" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Away Record:
+                        <input name="Away Team Away Record" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Injured Players:
+                        <input name="Away Team Injuries" type="range"  min="0" max="15" step="1" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0</output>
+                        <br>
+                        <br> FG Percentage:
+                        <input name="Away Team FG Percentage" type="range"  min="0.0" max="1.0" step="0.01" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>0.5</output>
+                        <br>
+                        <br> Points Per Game:
+                        <input name="Away Team PPG" type="range"  min="70" max="130" step="0.5" oninput="this.nextElementSibling.value = this.value" required>
+                        <output>100</output>
+                        <br>
+                        <br>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Predicted Winning Team:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
