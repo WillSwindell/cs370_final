@@ -23,14 +23,12 @@ def main():
         h_ar = flask.request.form['Home Team Away Record']
         a_hr = flask.request.form['Away Team Home Record']
         a_ar = flask.request.form['Away Team Away Record']
-        h_inj = flask.request.form['Home Team Injuries']
-        a_inj = flask.request.form['Away Team Injuries']
         h_fg = flask.request.form['Home Team FG Percentage']
         a_fg = flask.request.form['Away Team FG Percentage']
         h_pts = flask.request.form['Home Team PPG']
         a_pts = flask.request.form['Away Team PPG']
-        input_variables = pd.DataFrame([[h_pct, a_pct, h_hr, h_ar, a_hr, a_ar, h_inj, a_inj, h_fg, a_fg, h_pts, a_pts]],
-                                       columns=['HOME_PCT', 'AWAY_PCT', 'HOME_hr', 'HOME_ar', 'AWAY_hr', 'AWAY_ar', 'HOME_inj', 'AWAY_inj', 'H_FG_pct', 'A_FG_pct',  'H_PPG', 'A_PPG'],
+        input_variables = pd.DataFrame([[h_pct, a_pct, h_hr, h_ar, a_hr, a_ar, h_fg, a_fg, h_pts, a_pts]],
+                                       columns=['HOME_PCT', 'AWAY_PCT', 'HOME_hr', 'HOME_ar', 'AWAY_hr', 'AWAY_ar', 'H_FG_pct', 'A_FG_pct',  'H_PPG', 'A_PPG'],
                                        dtype=float)
 
         cleaned = cleanup(input_variables)
@@ -51,8 +49,6 @@ def main():
                                                      'Home Team Away Record':h_ar,
                                                      'Away Team Home Record':a_hr,
                                                      'Away Team Away Record':a_ar,
-                                                     'Home Team Injuries':h_inj,
-                                                     'Away Team Injuries':a_inj,
                                                      'Home Team FG Percentage':h_fg,
                                                      'Away Team FG Percentage':a_fg,
                                                      'Home Team PPG':h_pts,
